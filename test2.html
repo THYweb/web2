@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> jQuery draggable()和droppable() test1</title>
+
+     <!--jQuet and jQuery UI CDN-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <style>
+        #div1,#div2{
+            border:1px solid;
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        $(document).ready(function(){
+            $("#div1 span,#div2 span").draggable({
+                revert:"invalid"
+                //revert:"false",
+            });
+            
+            $("#div1 span,#div2 span").draggable({
+               containment:""
+            });
+            $("#div1 span,#div2 span").droppable({
+                drop:function(event, ui){
+                    $("#div1,#div2").append(ui.draggable);
+                    $(ui.draggable).css({position:"relative",top:"0px",left:"0px"})
+                                   .draggable("enable");
+                }
+            });
+        });
+
+    </script>
+
+    <div id="div1">
+        <span>Item 1 to move</span><br><br>
+        <span>Item 2 to move</span><br><br>
+        <span>Item 3 to move</span>
+    </div>
+    <br>
+    <br>
+    <div id="div2">
+        <span>Item 4 to move</span><br><br>
+        <span>Item 5 to move</span><br><br>
+        <span>Item 6 to move</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 新增元素1</title>
+
+    <!--JQuery CDN-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    
+    <!--
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    -->
+    <style>
+        #show{
+            width:500px;
+            height:500px;
+            background-color:aliceblue;
+        }
+        #p1{
+            background-color:aquamarine;
+        }
+        #col{
+            display:inline-block;
+        }
+    </style>
+    
+
+</head>
+<body>
+    
+    <div id="test">
+        <div id="col">
+            <img src="pic/amo1.jpg" height="80">
+                <p class="name">ES150R</p>
+                <p class="price">價錢:87000元</p> 
+            </img>
+        </div>
+    
+        <div id="col">
+            <img src="pic/amo2.jpg" height="80">
+                <p class="name">OZS150</p>
+                <p class="price">價錢:87000元</p> 
+            </img>
+        </div>
+    </div>
+    
+
+    <div id="show">
+
+    </div>
+
+    <div id="show2">
+
+    </div>
+    <button id="btn1" onclick="fun1()">點我新增</button>
+
+    <script>
+        
+        $(document).ready(function(){
+            //$("<div id='show2'></div>");
+            $("#btn1").on({
+                click: function(){
+                    
+                    //$("#show").append("<p id='p1'>"+$("#col .name").html()+"</p>");
+                    //$("#show").append("<p id='p1'>"+$(".name").text()+"</p>");
+                }
+            });
+
+        });
+            
+        
+        function fun1(){
+            var readDivImgP=document.getElementById("test").getElementsByTagName("p");
+            document.getElementById("show2").innerHTML="readDivImgP:"+readDivImgP.length;
+            $("#show").empty();
+			
+			if(readDivImgP.length!=0){
+			    
+				for(var i=0;i<readDivImgP.length;i++){
+
+					var newP=document.createElement("p");
+					var element=document.getElementById("show");
+					element.appendChild(newP);
+					newP.innerHTML=readDivImgP[i].innerHTML+"<br>";
+				}
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

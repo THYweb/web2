@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI 購物車4</title>
+
+    <!--jQuet and jQuery UI CDN-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <style>
+        .basket{
+            border:transparent solid 2px;
+        }
+        .hover{
+            border-color:red;
+        }
+        #col{
+            display:inline-block;
+        }
+        #div1{
+            height:134px;
+            width:10px;
+            display:inline-block;
+            /*background-color: red;*/
+        }
+    </style>
+    
+
+</head>
+<body>
+
+    <h2>Drag your buy thing in the cart!</h2>
+    <div id="thing">
+       <div id="div1">
+
+        </div>
+        
+        <div id="col">
+            <img src="https://picsum.photos/100/100?random=1">
+			
+                <p class="name">物品1</p>
+                <p class="price">價錢:870元</p> 
+            
+        </div>
+        
+        <div id="col">
+            <img src="https://picsum.photos/100/100?random=2">
+			
+			
+                <p class="name">物品2</p>
+                <p class="price">價錢:6700元</p>
+            
+        </div>
+
+        <div id="col">
+            <img src="https://picsum.photos/100/100?random=3">
+			
+			
+                <p class="name">物品3</p>
+                <p class="price">價錢:79元</p>
+            
+        </div>
+        
+    </div>
+    <hr>
+    <h2>Cart:</h2>
+    <div id="shopping">
+        <img src="https://picsum.photos/225/225?random=1" class="basket">
+		
+		
+    </div>
+    <br>
+    <input type="button" value="顯示" id="btn1" onclick="fun1()">
+    <div id="show">
+
+    </div>
+	
+    <script>
+        $(document).ready(function(){
+             $("div#thing #col").draggable({
+                 revert:"invalid"
+                 //revert:"valid"
+                 //revert:"true"
+                 //revert:"false"
+                 
+             });
+ 
+             $("div#shopping img.basket").droppable({
+                 hoverClass:"hover",
+                 drop:function(event,ui){
+                     $("div#shopping").append(ui.draggable);
+                     $(ui.draggable).css({position:"relative",top:"0px",left:"0px"})
+                                 .addClass("bought");
+                 }
+             });
+ 
+             $("div#thing").droppable({
+                 accept:".bought",
+                 drop:function(event,ui){
+                     $("div#thing").append(ui.draggable);
+                     $(ui.draggable).css({position:"relative",top:"0px",left:"0px"})
+                                 .removeClass("bought");
+                 }
+             });
+             
+         });
+         
+         function fun1(){
+            
+            
+ 
+             var readDivImgP=document.getElementById("shopping").getElementsByTagName("p"); 
+             
+             $("#show").empty();
+             
+             if(readDivImgP.length!=0){
+                 
+                 for(var i=0;i<readDivImgP.length;i++){
+ 
+                     var newP=document.createElement("p");
+                     var element=document.getElementById("show");
+                     element.appendChild(newP);
+                     newP.innerHTML=readDivImgP[i].innerHTML; 
+                     
+                 }
+             }
+             
+         
+         }
+        
+     </script>
+     
+</body>
+</html>
